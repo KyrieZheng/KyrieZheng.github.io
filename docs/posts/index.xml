@@ -8,12 +8,12 @@
     <language>en-us</language>
     <lastBuildDate>Sun, 20 Jun 2021 23:37:46 +0800</lastBuildDate><atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>First Post</title>
+      <title>ZjW first blog</title>
       <link>http://example.org/posts/first-post/</link>
       <pubDate>Sun, 20 Jun 2021 23:37:46 +0800</pubDate>
       
       <guid>http://example.org/posts/first-post/</guid>
-      <description>test </description>
+      <description>第一篇 </description>
     </item>
     
   </channel>
