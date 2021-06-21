@@ -1,5 +1,32 @@
 baseURL = "https://kyriezheng.github.io/"
 languageCode = "en-us"
-title = "ZJW De Blog"
-theme = "ananke"
+title = "KyrieZheng's Blog"
+theme = "sk3"
 publishDir = "docs"
+paginate = 10
+
+[taxonmies]
+    tag = "tags"
+
+[menu]
+    [[menu.main]]
+        name = "post"
+        weight = 0
+        url = "/posts"
+    [[menu.main]]
+        name = "about me"
+        weight = 0
+        url = "/about"
+
+[params.utteranc]         # utteranc is a comment system based on GitHub issues. see https://utteranc.es
+    enable = true
+    repo = "KyrieZheng/KyrieZheng.github.io"    # The repo to store comments
+    issueTerm = "pathname"
+
+[params]
+  # Site author
+  author = "KyrieZheng"
+
+  # homepage 页描述信息
+  description = "我的博客站点"
+
