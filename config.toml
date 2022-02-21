@@ -1,7 +1,7 @@
 baseURL = "https://kyriezheng.github.io/"
 languageCode = "en-us"
 title = "KyrieZheng's Blog"
-theme = "sk3"
+theme = "hugo-PaperMod"
 publishDir = "docs"
 paginate = 10
 
