@@ -3,25 +3,26 @@ languageCode = "en-us"
 title = "KyrieZheng's Blog"
 theme = "hugo-PaperMod"
 publishDir = "docs"
-paginate = 10
+paginate = 4
+# searchHidden = true
+ShowToc = true
 
 [taxonmies]
     tag = "tags"
 
 [menu]
     [[menu.main]]
+        name = "archives"
+        weight = 2
+        url = "/archives"
+    [[menu.main]]
         name = "post"
-        weight = 0
+        weight = 1
         url = "/posts"
     [[menu.main]]
         name = "about me"
-        weight = 0
+        weight = 3
         url = "/about"
-
-[params.utteranc]         # utteranc is a comment system based on GitHub issues. see https://utteranc.es
-    enable = true
-    repo = "KyrieZheng/KyrieZheng.github.io"    # The repo to store comments
-    issueTerm = "pathname"
 
 [params]
   # Site author
@@ -29,4 +30,19 @@ paginate = 10
 
   # homepage 页描述信息
   description = "我的博客站点"
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
 
+[[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/KyrieZheng"
+
+[params.utteranc]         # utteranc is a comment system based on GitHub issues. see https://utteranc.es
+    enable = true
+    repo = "KyrieZheng/KyrieZheng.github.io"    # The repo to store comments
+    issueTerm = "pathname"
+
+
+[params.homeInfoParams]
+    Title = "Hi there 👋"
+    Content = "Many a mickle makes a muckle"

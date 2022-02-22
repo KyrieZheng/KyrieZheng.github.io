@@ -185,13 +185,18 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
         </div>
         <ul id="menu">
             <li>
-                <a href="https://kyriezheng.github.io/about" title="about me">
-                    <span>about me</span>
+                <a href="https://kyriezheng.github.io/posts" title="post">
+                    <span>post</span>
                 </a>
             </li>
             <li>
-                <a href="https://kyriezheng.github.io/posts" title="post">
-                    <span>post</span>
+                <a href="https://kyriezheng.github.io/archives" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyriezheng.github.io/about" title="about me">
+                    <span>about me</span>
                 </a>
             </li>
         </ul>
@@ -201,7 +206,7 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://kyriezheng.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://kyriezheng.github.io/posts/">Posts</a></div>
     <h1 class="post-title">
       循环队列
     </h1>
@@ -332,6 +337,14 @@ func (q *Queue) ShowQueue() {
   </div>
 
   <footer class="post-footer">
+<nav class="paginav">
+  <a class="next" href="https://kyriezheng.github.io/posts/reverse-list/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>反转链表如何实现？</span>
+  </a>
+</nav>
+
   </footer>
 </article>
     </main>

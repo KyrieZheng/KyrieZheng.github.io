@@ -13,7 +13,7 @@
       <pubDate>Thu, 10 Feb 2022 16:52:12 +0800</pubDate>
       
       <guid>https://kyriezheng.github.io/about/</guid>
-      <description>关于我 </description>
+      <description>Nice to meet U </description>
     </item>
     
     <item>
@@ -75,6 +75,8 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
       <guid>https://kyriezheng.github.io/posts/js-arrow-fun/</guid>
       <description>箭头函数1  this 是静态的 使用call 也无法改变  function getName() { console.log(this.name) } let getName2 = () =&amp;gt; { console.log(this.name) } window.name = &amp;#39;111&amp;#39; let school = { name: &amp;#39;222&amp;#39; } getName.call(school) // 222 getName2.call(school) // 111  不能当作构造函数  let Person = (name, age) =&amp;gt; { this.name = name; this.age = age } let xiaoming = new Person(&amp;#39;xiaoming&amp;#39;, 18) // 报错  不能使用arguments 变量  let fn = () =&amp;gt; { console.</description>
     </item>
+    
+    
     
   </channel>
 </rss>
