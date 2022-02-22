@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>堆排序 &amp;&amp; 堆的应用 | KyrieZheng&#39;s Blog</title>
+<meta name="keywords" content="" />
+<meta name="description" content="堆 什么是堆？？ 堆的定义
+ 堆是一种完全二叉树，完全二叉树的形式是指除了最后一层之外，其他所有层的结点都是满的，而最后一层的所有结点都靠左边 堆中的每一个节点的值需要大于等于（或者小于等于）其子树的每一个节点  如何实现一个堆   每个节点的值都大于等于其子树的称为大顶堆
+  每个节点的值都小于等于其子树的称为小顶堆
+  可以使用数组来表示堆 因为堆是一个完全二叉树 满足节点i的子树为2i 和 2i &#43; 1 可以使用数组表示一个堆
+  Show Code type Heap struct { M []int Len int } // BuildHeap 对数组进行堆化 func BuildHeap(array []int) *Heap { m := make([]int, 1) m = append(m, array...) n := len(m) - 1 for i := n / 2; i &gt; 0; i-- { heapF(m, n, i) } return &amp;Heap{ M: m, Len: n, } } // 堆节点堆化 func heapF(m []int, n, i int) { for { maxPos := i if 2*i &lt;= n &amp;&amp; m[2*i] &gt; m[i] { maxPos = 2 * i } if 2*i&#43;1 &lt;= n &amp;&amp; m[2*i&#43;1] &gt; m[maxPos] { maxPos = 2*i &#43; 1 } if maxPos == i { //如果i节点位置正确，则退出 break } m[i], m[maxPos] = m[maxPos], m[i] i = maxPos } } func (h *Heap) Insert(data int) { h.">
+<meta name="author" content="KyrieZheng">
+<link rel="canonical" href="https://kyriezheng.github.io/posts/h-sort/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyriezheng.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyriezheng.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyriezheng.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://kyriezheng.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://kyriezheng.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="堆排序 &amp;&amp; 堆的应用" />
+<meta property="og:description" content="堆 什么是堆？？ 堆的定义
+ 堆是一种完全二叉树，完全二叉树的形式是指除了最后一层之外，其他所有层的结点都是满的，而最后一层的所有结点都靠左边 堆中的每一个节点的值需要大于等于（或者小于等于）其子树的每一个节点  如何实现一个堆   每个节点的值都大于等于其子树的称为大顶堆
+  每个节点的值都小于等于其子树的称为小顶堆
+  可以使用数组来表示堆 因为堆是一个完全二叉树 满足节点i的子树为2i 和 2i &#43; 1 可以使用数组表示一个堆
+  Show Code type Heap struct { M []int Len int } // BuildHeap 对数组进行堆化 func BuildHeap(array []int) *Heap { m := make([]int, 1) m = append(m, array...) n := len(m) - 1 for i := n / 2; i &gt; 0; i-- { heapF(m, n, i) } return &amp;Heap{ M: m, Len: n, } } // 堆节点堆化 func heapF(m []int, n, i int) { for { maxPos := i if 2*i &lt;= n &amp;&amp; m[2*i] &gt; m[i] { maxPos = 2 * i } if 2*i&#43;1 &lt;= n &amp;&amp; m[2*i&#43;1] &gt; m[maxPos] { maxPos = 2*i &#43; 1 } if maxPos == i { //如果i节点位置正确，则退出 break } m[i], m[maxPos] = m[maxPos], m[i] i = maxPos } } func (h *Heap) Insert(data int) { h." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyriezheng.github.io/posts/h-sort/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-30T16:53:30&#43;08:00" />
+<meta property="article:modified_time" content="2021-07-30T16:53:30&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="堆排序 &amp;&amp; 堆的应用"/>
+<meta name="twitter:description" content="堆 什么是堆？？ 堆的定义
+ 堆是一种完全二叉树，完全二叉树的形式是指除了最后一层之外，其他所有层的结点都是满的，而最后一层的所有结点都靠左边 堆中的每一个节点的值需要大于等于（或者小于等于）其子树的每一个节点  如何实现一个堆   每个节点的值都大于等于其子树的称为大顶堆
+  每个节点的值都小于等于其子树的称为小顶堆
+  可以使用数组来表示堆 因为堆是一个完全二叉树 满足节点i的子树为2i 和 2i &#43; 1 可以使用数组表示一个堆
+  Show Code type Heap struct { M []int Len int } // BuildHeap 对数组进行堆化 func BuildHeap(array []int) *Heap { m := make([]int, 1) m = append(m, array...) n := len(m) - 1 for i := n / 2; i &gt; 0; i-- { heapF(m, n, i) } return &amp;Heap{ M: m, Len: n, } } // 堆节点堆化 func heapF(m []int, n, i int) { for { maxPos := i if 2*i &lt;= n &amp;&amp; m[2*i] &gt; m[i] { maxPos = 2 * i } if 2*i&#43;1 &lt;= n &amp;&amp; m[2*i&#43;1] &gt; m[maxPos] { maxPos = 2*i &#43; 1 } if maxPos == i { //如果i节点位置正确，则退出 break } m[i], m[maxPos] = m[maxPos], m[i] i = maxPos } } func (h *Heap) Insert(data int) { h."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://kyriezheng.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "堆排序 \u0026\u0026 堆的应用",
+      "item": "https://kyriezheng.github.io/posts/h-sort/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "堆排序 \u0026\u0026 堆的应用",
+  "name": "堆排序 \u0026\u0026 堆的应用",
+  "description": "堆 什么是堆？？ 堆的定义\n 堆是一种完全二叉树，完全二叉树的形式是指除了最后一层之外，其他所有层的结点都是满的，而最后一层的所有结点都靠左边 堆中的每一个节点的值需要大于等于（或者小于等于）其子树的每一个节点  如何实现一个堆   每个节点的值都大于等于其子树的称为大顶堆\n  每个节点的值都小于等于其子树的称为小顶堆\n  可以使用数组来表示堆 因为堆是一个完全二叉树 满足节点i的子树为2i 和 2i + 1 可以使用数组表示一个堆\n  Show Code type Heap struct { M []int Len int } // BuildHeap 对数组进行堆化 func BuildHeap(array []int) *Heap { m := make([]int, 1) m = append(m, array...) n := len(m) - 1 for i := n / 2; i \u0026gt; 0; i-- { heapF(m, n, i) } return \u0026amp;Heap{ M: m, Len: n, } } // 堆节点堆化 func heapF(m []int, n, i int) { for { maxPos := i if 2*i \u0026lt;= n \u0026amp;\u0026amp; m[2*i] \u0026gt; m[i] { maxPos = 2 * i } if 2*i+1 \u0026lt;= n \u0026amp;\u0026amp; m[2*i+1] \u0026gt; m[maxPos] { maxPos = 2*i + 1 } if maxPos == i { //如果i节点位置正确，则退出 break } m[i], m[maxPos] = m[maxPos], m[i] i = maxPos } } func (h *Heap) Insert(data int) { h.",
+  "keywords": [
+    
+  ],
+  "articleBody": "堆 什么是堆？？ 堆的定义\n 堆是一种完全二叉树，完全二叉树的形式是指除了最后一层之外，其他所有层的结点都是满的，而最后一层的所有结点都靠左边 堆中的每一个节点的值需要大于等于（或者小于等于）其子树的每一个节点  如何实现一个堆   每个节点的值都大于等于其子树的称为大顶堆\n  每个节点的值都小于等于其子树的称为小顶堆\n  可以使用数组来表示堆 因为堆是一个完全二叉树 满足节点i的子树为2i 和 2i + 1 可以使用数组表示一个堆\n  Show Code type Heap struct { M []int Len int } // BuildHeap 对数组进行堆化 func BuildHeap(array []int) *Heap { m := make([]int, 1) m = append(m, array...) n := len(m) - 1 for i := n / 2; i  0; i-- { heapF(m, n, i) } return \u0026Heap{ M: m, Len: n, } } // 堆节点堆化 func heapF(m []int, n, i int) { for { maxPos := i if 2*i m[i] { maxPos = 2 * i } if 2*i+1 m[maxPos] { maxPos = 2*i + 1 } if maxPos == i { //如果i节点位置正确，则退出 break } m[i], m[maxPos] = m[maxPos], m[i] i = maxPos } } func (h *Heap) Insert(data int) { h.M = append(h.M, data) h.Len++ i := h.Len for i/2  0 \u0026\u0026 h.M[i/2] 堆排序 通过堆的概念 就可以使用堆排序进行排序了\n 堆顶的数是最大值 每次取出堆中最大值后，进行出堆 堆化操作  func HeapSort(array []int) []int { // 对数组堆化 大顶堆 sortA := make([]int, 0) heapI := heap.BuildHeap(array) len := heapI.Len for len  0 { sortA = append(sortA, heapI.M[1]) heapI.Delete() len = heapI.Len } return sortA } 堆的应用 计算TopK  利用堆实现一个优先级队列，实现一个小顶堆 先将数组的前k个数据进行堆化 对剩下的数组遍历与堆顶数据比较在进行堆化 只要维护这一个大小为k的小顶堆 这个堆中的数据就是前TopK  func TopK(array []int, k int) []int { len := len(array) if k  len { fmt.Println(\"k的值大于数组长度\") return nil } // 生成大小为k的小顶堆 heapArr := array[:k] smallHeap := BuildSmallHeap(heapArr) Insert(smallHeap, array[k:]) return smallHeap.M } func BuildSmallHeap(array []int) *heap.Heap { m := make([]int, 1) m = append(m, array...) len := len(m) - 1 fmt.Println(len) i := len / 2 for ; i  0; i-- { smallHeap(m, len, i) } return \u0026heap.Heap{m, len} } func smallHeap(array []int, len, i int) { for { fmt.Println(i) minIndex := i if i*2 0 { if m[0]  heap.M[1] { // 替换 heap.M[1] = m[0] smallHeap(heap.M, heap.Len, 1) } m = m[1:] len-- } } func main() { m := []int{3, 5, 1, 2, 8, 6, 10, 12, 7, 1} fmt.Println(sort.TopK(m, 5)) } ",
+  "wordCount" : "431",
+  "inLanguage": "en",
+  "datePublished": "2021-07-30T16:53:30+08:00",
+  "dateModified": "2021-07-30T16:53:30+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "KyrieZheng"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyriezheng.github.io/posts/h-sort/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KyrieZheng's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyriezheng.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyriezheng.github.io/" accesskey="h" title="KyrieZheng&#39;s Blog (Alt + H)">KyrieZheng&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kyriezheng.github.io/posts" title="post">
+                    <span>post</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyriezheng.github.io/archives" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyriezheng.github.io/about" title="about me">
+                    <span>about me</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyriezheng.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://kyriezheng.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      堆排序 &amp;&amp; 堆的应用
+    </h1>
+    <div class="post-meta"><span title='2021-07-30 16:53:30 +0800 CST'>July 30, 2021</span>&nbsp;·&nbsp;KyrieZheng
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="堆">堆<a hidden class="anchor" aria-hidden="true" href="#堆">#</a></h2>
+<h4 id="什么是堆">什么是堆？？<a hidden class="anchor" aria-hidden="true" href="#什么是堆">#</a></h4>
+<p>堆的定义</p>
+<ul>
+<li>堆是一种完全二叉树，完全二叉树的形式是指除了最后一层之外，其他所有层的结点都是满的，而最后一层的所有结点都靠左边</li>
+<li>堆中的每一个节点的值需要大于等于（或者小于等于）其子树的每一个节点</li>
+</ul>
+<p><img loading="lazy" src="https://user-images.githubusercontent.com/34566156/153533413-64762bb9-e087-4430-824c-0e56a1eb0213.png" alt="42676-0955fabfb52c11db"  />
+</p>
+<h4 id="如何实现一个堆">如何实现一个堆<a hidden class="anchor" aria-hidden="true" href="#如何实现一个堆">#</a></h4>
+<ul>
+<li>
+<p>每个节点的值都大于等于其子树的称为大顶堆</p>
+</li>
+<li>
+<p>每个节点的值都小于等于其子树的称为小顶堆</p>
+</li>
+<li>
+<p>可以使用数组来表示堆 因为堆是一个完全二叉树 满足节点i的子树为2<em>i 和 2</em>i + 1 可以使用数组表示一个堆</p>
+</li>
+</ul>
+<h5 id="show-code">Show Code<a hidden class="anchor" aria-hidden="true" href="#show-code">#</a></h5>
+<pre><code>type Heap struct {
+	M   []int
+	Len int
+}
+
+// BuildHeap 对数组进行堆化
+func BuildHeap(array []int) *Heap {
+	m := make([]int, 1)
+	m = append(m, array...)
+	n := len(m) - 1
+	for i := n / 2; i &gt; 0; i-- {
+		heapF(m, n, i)
+	}
+	return &amp;Heap{
+		M:   m,
+		Len: n,
+	}
+}
+
+// 堆节点堆化
+func heapF(m []int, n, i int) {
+	for {
+		maxPos := i
+		if 2*i &lt;= n &amp;&amp; m[2*i] &gt; m[i] {
+			maxPos = 2 * i
+		}
+		if 2*i+1 &lt;= n &amp;&amp; m[2*i+1] &gt; m[maxPos] {
+			maxPos = 2*i + 1
+		}
+		if maxPos == i { //如果i节点位置正确，则退出
+			break
+		}
+		m[i], m[maxPos] = m[maxPos], m[i]
+		i = maxPos
+	}
+}
+
+func (h *Heap) Insert(data int) {
+	h.M = append(h.M, data)
+	h.Len++
+	i := h.Len
+	for i/2 &gt; 0 &amp;&amp; h.M[i/2] &lt; h.M[i] {
+		h.M[i/2], h.M[i] = h.M[i], h.M[i/2]
+		i = i / 2
+	}
+}
+
+// Delete 删除堆顶元素
+func (h *Heap) Delete() {
+	// 删除堆顶元素
+	if h.Len &lt; 1 {
+		return
+	}
+
+	h.M[1] = h.M[h.Len]
+	h.M = h.M[:h.Len]
+	h.Len--
+	heapF(h.M, h.Len, 1)
+}
+</code></pre><h4 id="堆排序">堆排序<a hidden class="anchor" aria-hidden="true" href="#堆排序">#</a></h4>
+<p>通过堆的概念 就可以使用堆排序进行排序了</p>
+<ul>
+<li>堆顶的数是最大值</li>
+<li>每次取出堆中最大值后，进行出堆 堆化操作</li>
+</ul>
+<pre><code>func HeapSort(array []int) []int {
+	// 对数组堆化 大顶堆
+	sortA := make([]int, 0)
+	heapI := heap.BuildHeap(array)
+	len := heapI.Len
+	for len &gt; 0 {
+		sortA = append(sortA, heapI.M[1])
+		heapI.Delete()
+		len = heapI.Len
+	}
+	return sortA
+}
+</code></pre><h4 id="堆的应用">堆的应用<a hidden class="anchor" aria-hidden="true" href="#堆的应用">#</a></h4>
+<h5 id="计算topk">计算TopK<a hidden class="anchor" aria-hidden="true" href="#计算topk">#</a></h5>
+<ul>
+<li>利用堆实现一个优先级队列，实现一个小顶堆</li>
+<li>先将数组的前k个数据进行堆化</li>
+<li>对剩下的数组遍历与堆顶数据比较在进行堆化</li>
+<li>只要维护这一个大小为k的小顶堆 这个堆中的数据就是前TopK</li>
+</ul>
+<pre><code>func TopK(array []int, k int) []int {
+	len := len(array)
+	if k &gt; len {
+		fmt.Println(&quot;k的值大于数组长度&quot;)
+		return nil
+	}
+
+	// 生成大小为k的小顶堆
+	heapArr := array[:k]
+	smallHeap := BuildSmallHeap(heapArr)
+	Insert(smallHeap, array[k:])
+	return smallHeap.M
+}
+
+func BuildSmallHeap(array []int) *heap.Heap {
+	m := make([]int, 1)
+	m = append(m, array...)
+	len := len(m) - 1
+	fmt.Println(len)
+	i := len / 2
+	for ; i &gt; 0; i-- {
+		smallHeap(m, len, i)
+	}
+	return &amp;heap.Heap{m, len}
+}
+
+func smallHeap(array []int, len, i int) {
+	for {
+		fmt.Println(i)
+		minIndex := i
+		if i*2 &lt;= len &amp;&amp; array[i*2] &lt; array[i] {
+			minIndex = i * 2
+		}
+		if 2*i+1 &lt;= len &amp;&amp; array[2*i+1] &lt; array[minIndex] {
+			minIndex = i*2 + 1
+		}
+		if minIndex == i {
+			break
+		}
+		array[minIndex], array[i] = array[i], array[minIndex]
+		i = minIndex
+	}
+}
+
+func Insert(heap *heap.Heap, m []int) {
+	// 插入堆中 如果满足则替换堆顶 并重新堆化
+	len := len(m)
+	for len &gt; 0 {
+		if m[0] &gt; heap.M[1] {
+			// 替换
+			heap.M[1] = m[0]
+			smallHeap(heap.M, heap.Len, 1)
+		}
+		m = m[1:]
+		len--
+	}
+}
+
+func main() {
+    m := []int{3, 5, 1, 2, 8, 6, 10, 12, 7, 1}
+	fmt.Println(sort.TopK(m, 5))
+}
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="next" href="https://kyriezheng.github.io/posts/cycle-queue/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>循环队列</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://kyriezheng.github.io/">KyrieZheng&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

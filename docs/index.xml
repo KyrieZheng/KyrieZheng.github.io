@@ -6,7 +6,7 @@
     <description>Recent content on KyrieZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Jul 2021 15:22:15 +0800</lastBuildDate><atom:link href="https://kyriezheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Jul 2021 16:53:30 +0800</lastBuildDate><atom:link href="https://kyriezheng.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://kyriezheng.github.io/about/</link>
@@ -14,6 +14,19 @@
       
       <guid>https://kyriezheng.github.io/about/</guid>
       <description>Nice to meet U </description>
+    </item>
+    
+    <item>
+      <title>堆排序 &amp;&amp; 堆的应用</title>
+      <link>https://kyriezheng.github.io/posts/h-sort/</link>
+      <pubDate>Fri, 30 Jul 2021 16:53:30 +0800</pubDate>
+      
+      <guid>https://kyriezheng.github.io/posts/h-sort/</guid>
+      <description>堆 什么是堆？？ 堆的定义
+ 堆是一种完全二叉树，完全二叉树的形式是指除了最后一层之外，其他所有层的结点都是满的，而最后一层的所有结点都靠左边 堆中的每一个节点的值需要大于等于（或者小于等于）其子树的每一个节点  如何实现一个堆   每个节点的值都大于等于其子树的称为大顶堆
+  每个节点的值都小于等于其子树的称为小顶堆
+  可以使用数组来表示堆 因为堆是一个完全二叉树 满足节点i的子树为2i 和 2i + 1 可以使用数组表示一个堆
+  Show Code type Heap struct { M []int Len int } // BuildHeap 对数组进行堆化 func BuildHeap(array []int) *Heap { m := make([]int, 1) m = append(m, array...) n := len(m) - 1 for i := n / 2; i &amp;gt; 0; i-- { heapF(m, n, i) } return &amp;amp;Heap{ M: m, Len: n, } } // 堆节点堆化 func heapF(m []int, n, i int) { for { maxPos := i if 2*i &amp;lt;= n &amp;amp;&amp;amp; m[2*i] &amp;gt; m[i] { maxPos = 2 * i } if 2*i+1 &amp;lt;= n &amp;amp;&amp;amp; m[2*i+1] &amp;gt; m[maxPos] { maxPos = 2*i + 1 } if maxPos == i { //如果i节点位置正确，则退出 break } m[i], m[maxPos] = m[maxPos], m[i] i = maxPos } } func (h *Heap) Insert(data int) { h.</description>
     </item>
     
     <item>

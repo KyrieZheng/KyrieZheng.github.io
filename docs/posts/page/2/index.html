@@ -146,6 +146,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>网络通信
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>网络通信 七层网络模型  应用层  HTTP FTP SSH 等等   表示层 会话层 传输层  TCP UDP RTP   网络层  IP ICMP   数据链路层  以太网   物理层  TCP / UDP TCP建立连接三次握手
+ 第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x&#43;1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN&#43;ACK报文段 将ACK=y&#43;1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态  TCP断开连接四次分手
+ 第一次分手：主机1 发送FIN报文段seq=x&#43;2 ACK=y&#43;1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x&#43;3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y&#43;1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y&#43;2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了  UDP...</p>
+  </section>
+  <footer class="entry-footer"><span title='2021-06-30 16:32:22 +0800 CST'>June 30, 2021</span>&nbsp;·&nbsp;KyrieZheng</footer>
+  <a class="entry-link" aria-label="post link to 网络通信" href="https://kyriezheng.github.io/posts/tcp/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>JavaScript 中的箭头函数
     </h2>
   </header>
