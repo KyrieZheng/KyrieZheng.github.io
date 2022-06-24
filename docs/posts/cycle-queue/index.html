@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>循环队列 | KyrieZheng&#39;s Blog</title>
+<title>循环队列 | OswinZheng&#39;s Blog</title>
 <meta name="keywords" content="" />
 <meta name="description" content="数据结构-队列 队列 队列的概念 就是先进先出 队列的两个基本操作 入队（push）出对（pop）
 顺序队列 / 链式队列 顺序队列使用数组来实现
@@ -15,16 +15,16 @@
 循环队列， 顾名思义， 它长得像一个环。 原本数组是有头有尾的， 是一条直线。 现在我们把首尾 相连， 扳成了一个环。 但是循环队列会浪费一个空间来放置尾节点
 用代码来实现一下循环队列
 type Object interface { } // len 表示我们用于储存数据的数组的长度 var len int /* Queue 队列 */ type Queue struct { data []Object head int // 头节点 tail int // 尾节点 } // 初始化队列 func InitCircleQueue(size int) Queue { len = size &#43; 1 array := make([]Object, len) q := Queue{} q.">
-<meta name="author" content="KyrieZheng">
-<link rel="canonical" href="https://kyriezheng.github.io/posts/cycle-queue/" />
+<meta name="author" content="OswinZheng">
+<link rel="canonical" href="https://oswinzheng.github.io/posts/cycle-queue/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://kyriezheng.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://kyriezheng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://kyriezheng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://kyriezheng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://kyriezheng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://oswinzheng.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://oswinzheng.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://oswinzheng.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://oswinzheng.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://oswinzheng.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -73,7 +73,7 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
 用代码来实现一下循环队列
 type Object interface { } // len 表示我们用于储存数据的数组的长度 var len int /* Queue 队列 */ type Queue struct { data []Object head int // 头节点 tail int // 尾节点 } // 初始化队列 func InitCircleQueue(size int) Queue { len = size &#43; 1 array := make([]Object, len) q := Queue{} q." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyriezheng.github.io/posts/cycle-queue/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://oswinzheng.github.io/posts/cycle-queue/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-23T15:22:15&#43;08:00" />
 <meta property="article:modified_time" content="2021-07-23T15:22:15&#43;08:00" />
 
@@ -98,13 +98,13 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://kyriezheng.github.io/posts/"
+      "item": "https://oswinzheng.github.io/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "循环队列",
-      "item": "https://kyriezheng.github.io/posts/cycle-queue/"
+      "item": "https://oswinzheng.github.io/posts/cycle-queue/"
     }
   ]
 }
@@ -126,18 +126,18 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
   "dateModified": "2021-07-23T15:22:15+08:00",
   "author":{
     "@type": "Person",
-    "name": "KyrieZheng"
+    "name": "OswinZheng"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyriezheng.github.io/posts/cycle-queue/"
+    "@id": "https://oswinzheng.github.io/posts/cycle-queue/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "KyrieZheng's Blog",
+    "name": "OswinZheng's Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://kyriezheng.github.io/favicon.ico"
+      "url": "https://oswinzheng.github.io/favicon.ico"
     }
   }
 }
@@ -159,7 +159,7 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://kyriezheng.github.io/" accesskey="h" title="KyrieZheng&#39;s Blog (Alt + H)">KyrieZheng&#39;s Blog</a>
+            <a href="https://oswinzheng.github.io/" accesskey="h" title="OswinZheng&#39;s Blog (Alt + H)">OswinZheng&#39;s Blog</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -185,17 +185,17 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
         </div>
         <ul id="menu">
             <li>
-                <a href="https://kyriezheng.github.io/posts" title="post">
+                <a href="https://oswinzheng.github.io/posts" title="post">
                     <span>post</span>
                 </a>
             </li>
             <li>
-                <a href="https://kyriezheng.github.io/archives" title="archives">
+                <a href="https://oswinzheng.github.io/archives" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="https://kyriezheng.github.io/about" title="about me">
+                <a href="https://oswinzheng.github.io/about" title="about me">
                     <span>about me</span>
                 </a>
             </li>
@@ -206,11 +206,11 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyriezheng.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://kyriezheng.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="https://oswinzheng.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://oswinzheng.github.io/posts/">Posts</a></div>
     <h1 class="post-title">
       循环队列
     </h1>
-    <div class="post-meta"><span title='2021-07-23 15:22:15 +0800 CST'>July 23, 2021</span>&nbsp;·&nbsp;KyrieZheng
+    <div class="post-meta"><span title='2021-07-23 15:22:15 +0800 CST'>July 23, 2021</span>&nbsp;·&nbsp;OswinZheng
 
 </div>
   </header> 
@@ -234,7 +234,7 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
 扳成了一个环。
 但是循环队列会浪费一个空间来放置尾节点</p>
 <p>用代码来实现一下循环队列</p>
-<pre><code>type Object interface { }
+<pre tabindex="0"><code>type Object interface { }
 
 // len 表示我们用于储存数据的数组的长度
 var len int
@@ -278,7 +278,7 @@ func (q *Queue) IsFull() bool {
 
 // 获取下一个插入队列的位置
 func (q *Queue) GetTailNext() (next int) {
-	fmt.Println(&quot;tail:&quot;, q.tail)
+	fmt.Println(&#34;tail:&#34;, q.tail)
 	if q.tail == len - 1 {
 		next = 0
 		return
@@ -291,8 +291,8 @@ func (q *Queue) GetTailNext() (next int) {
 func (q *Queue) Push(data Object) (err error) {
 	cur := q.tail
 	if q.IsFull() {
-		fmt.Println(&quot;队列已满， 无法继续添加&quot;)
-		return errors.New(&quot;队列已满， 无法继续添加&quot;)
+		fmt.Println(&#34;队列已满， 无法继续添加&#34;)
+		return errors.New(&#34;队列已满， 无法继续添加&#34;)
 	}
 	q.data[cur] = data
 
@@ -301,14 +301,14 @@ func (q *Queue) Push(data Object) (err error) {
 	} else {
 		q.tail++
 	}
-	fmt.Println(&quot;添加元素成功：&quot;, data)
+	fmt.Println(&#34;添加元素成功：&#34;, data)
 	return nil
 }
 
 // Pop
 func (q *Queue) Pop() Object {
 	if q.IsEmpty() {
-		fmt.Println(&quot;队列为空，无法继续弹出&quot;)
+		fmt.Println(&#34;队列为空，无法继续弹出&#34;)
 		return nil
 	}
 	head := q.head
@@ -322,14 +322,14 @@ func (q *Queue) Pop() Object {
 	data := q.data[head]
 	// head位置清空
 	q.data[head] = nil
-	fmt.Println(&quot;数据取出:&quot;, data)
+	fmt.Println(&#34;数据取出:&#34;, data)
 	return data
 }
 
 func (q *Queue) ShowQueue() {
 	array := q.data
 	for i:=0;i&lt;len;i++ {
-		fmt.Printf(&quot;下标为%d的元素为%v \n&quot;, i, array[i])
+		fmt.Printf(&#34;下标为%d的元素为%v \n&#34;, i, array[i])
 	}
 }
 </code></pre>
@@ -338,12 +338,12 @@ func (q *Queue) ShowQueue() {
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyriezheng.github.io/posts/h-sort/">
+  <a class="prev" href="https://oswinzheng.github.io/posts/h-sort/">
     <span class="title">« Prev Page</span>
     <br>
     <span>堆排序 &amp;&amp; 堆的应用</span>
   </a>
-  <a class="next" href="https://kyriezheng.github.io/posts/reverse-list/">
+  <a class="next" href="https://oswinzheng.github.io/posts/reverse-list/">
     <span class="title">Next Page »</span>
     <br>
     <span>反转链表如何实现？</span>
@@ -355,7 +355,7 @@ func (q *Queue) ShowQueue() {
     </main>
     
 <footer class="footer">
-    <span>&copy; 2022 <a href="https://kyriezheng.github.io/">KyrieZheng&#39;s Blog</a></span>
+    <span>&copy; 2022 <a href="https://oswinzheng.github.io/">OswinZheng&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

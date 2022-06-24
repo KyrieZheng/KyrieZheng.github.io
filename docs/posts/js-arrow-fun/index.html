@@ -5,19 +5,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>JavaScript 中的箭头函数 | KyrieZheng&#39;s Blog</title>
+<title>JavaScript 中的箭头函数 | OswinZheng&#39;s Blog</title>
 <meta name="keywords" content="" />
-<meta name="description" content="箭头函数1  this 是静态的 使用call 也无法改变  function getName() { console.log(this.name) } let getName2 = () =&gt; { console.log(this.name) } window.name = &#39;111&#39; let school = { name: &#39;222&#39; } getName.call(school) // 222 getName2.call(school) // 111  不能当作构造函数  let Person = (name, age) =&gt; { this.name = name; this.age = age } let xiaoming = new Person(&#39;xiaoming&#39;, 18) // 报错  不能使用arguments 变量  let fn = () =&gt; { console.">
-<meta name="author" content="KyrieZheng">
-<link rel="canonical" href="https://kyriezheng.github.io/posts/js-arrow-fun/" />
+<meta name="description" content="箭头函数1 this 是静态的 使用call 也无法改变 function getName() { console.log(this.name) } let getName2 = () =&gt; { console.log(this.name) } window.name = &#39;111&#39; let school = { name: &#39;222&#39; } getName.call(school) // 222 getName2.call(school) // 111 不能当作构造函数 let Person = (name, age) =&gt; { this.name = name; this.age = age } let xiaoming = new Person(&#39;xiaoming&#39;, 18) // 报错 不能使用arguments 变量 let fn = () =&gt; { console.log(arguments) } // arguments is not defined ">
+<meta name="author" content="OswinZheng">
+<link rel="canonical" href="https://oswinzheng.github.io/posts/js-arrow-fun/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://kyriezheng.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://kyriezheng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://kyriezheng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://kyriezheng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://kyriezheng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://oswinzheng.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://oswinzheng.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://oswinzheng.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://oswinzheng.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://oswinzheng.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -57,15 +57,15 @@
 
     </style>
 </noscript><meta property="og:title" content="JavaScript 中的箭头函数" />
-<meta property="og:description" content="箭头函数1  this 是静态的 使用call 也无法改变  function getName() { console.log(this.name) } let getName2 = () =&gt; { console.log(this.name) } window.name = &#39;111&#39; let school = { name: &#39;222&#39; } getName.call(school) // 222 getName2.call(school) // 111  不能当作构造函数  let Person = (name, age) =&gt; { this.name = name; this.age = age } let xiaoming = new Person(&#39;xiaoming&#39;, 18) // 报错  不能使用arguments 变量  let fn = () =&gt; { console." />
+<meta property="og:description" content="箭头函数1 this 是静态的 使用call 也无法改变 function getName() { console.log(this.name) } let getName2 = () =&gt; { console.log(this.name) } window.name = &#39;111&#39; let school = { name: &#39;222&#39; } getName.call(school) // 222 getName2.call(school) // 111 不能当作构造函数 let Person = (name, age) =&gt; { this.name = name; this.age = age } let xiaoming = new Person(&#39;xiaoming&#39;, 18) // 报错 不能使用arguments 变量 let fn = () =&gt; { console.log(arguments) } // arguments is not defined " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyriezheng.github.io/posts/js-arrow-fun/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://oswinzheng.github.io/posts/js-arrow-fun/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-20T23:37:46&#43;08:00" />
 <meta property="article:modified_time" content="2021-06-20T23:37:46&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JavaScript 中的箭头函数"/>
-<meta name="twitter:description" content="箭头函数1  this 是静态的 使用call 也无法改变  function getName() { console.log(this.name) } let getName2 = () =&gt; { console.log(this.name) } window.name = &#39;111&#39; let school = { name: &#39;222&#39; } getName.call(school) // 222 getName2.call(school) // 111  不能当作构造函数  let Person = (name, age) =&gt; { this.name = name; this.age = age } let xiaoming = new Person(&#39;xiaoming&#39;, 18) // 报错  不能使用arguments 变量  let fn = () =&gt; { console."/>
+<meta name="twitter:description" content="箭头函数1 this 是静态的 使用call 也无法改变 function getName() { console.log(this.name) } let getName2 = () =&gt; { console.log(this.name) } window.name = &#39;111&#39; let school = { name: &#39;222&#39; } getName.call(school) // 222 getName2.call(school) // 111 不能当作构造函数 let Person = (name, age) =&gt; { this.name = name; this.age = age } let xiaoming = new Person(&#39;xiaoming&#39;, 18) // 报错 不能使用arguments 变量 let fn = () =&gt; { console.log(arguments) } // arguments is not defined "/>
 
 
 <script type="application/ld+json">
@@ -77,13 +77,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://kyriezheng.github.io/posts/"
+      "item": "https://oswinzheng.github.io/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "JavaScript 中的箭头函数",
-      "item": "https://kyriezheng.github.io/posts/js-arrow-fun/"
+      "item": "https://oswinzheng.github.io/posts/js-arrow-fun/"
     }
   ]
 }
@@ -94,29 +94,29 @@
   "@type": "BlogPosting",
   "headline": "JavaScript 中的箭头函数",
   "name": "JavaScript 中的箭头函数",
-  "description": "箭头函数1  this 是静态的 使用call 也无法改变  function getName() { console.log(this.name) } let getName2 = () =\u0026gt; { console.log(this.name) } window.name = \u0026#39;111\u0026#39; let school = { name: \u0026#39;222\u0026#39; } getName.call(school) // 222 getName2.call(school) // 111  不能当作构造函数  let Person = (name, age) =\u0026gt; { this.name = name; this.age = age } let xiaoming = new Person(\u0026#39;xiaoming\u0026#39;, 18) // 报错  不能使用arguments 变量  let fn = () =\u0026gt; { console.",
+  "description": "箭头函数1 this 是静态的 使用call 也无法改变 function getName() { console.log(this.name) } let getName2 = () =\u0026gt; { console.log(this.name) } window.name = \u0026#39;111\u0026#39; let school = { name: \u0026#39;222\u0026#39; } getName.call(school) // 222 getName2.call(school) // 111 不能当作构造函数 let Person = (name, age) =\u0026gt; { this.name = name; this.age = age } let xiaoming = new Person(\u0026#39;xiaoming\u0026#39;, 18) // 报错 不能使用arguments 变量 let fn = () =\u0026gt; { console.log(arguments) } // arguments is not defined ",
   "keywords": [
     
   ],
-  "articleBody": "箭头函数1  this 是静态的 使用call 也无法改变  function getName() { console.log(this.name) } let getName2 = () = { console.log(this.name) } window.name = '111' let school = { name: '222' } getName.call(school) // 222 getName2.call(school) // 111  不能当作构造函数  let Person = (name, age) = { this.name = name; this.age = age } let xiaoming = new Person('xiaoming', 18) // 报错  不能使用arguments 变量  let fn = () = { console.log(arguments) } // arguments is not defined ",
+  "articleBody": "箭头函数1 this 是静态的 使用call 也无法改变 function getName() { console.log(this.name) } let getName2 = () =\u003e { console.log(this.name) } window.name = '111' let school = { name: '222' } getName.call(school) // 222 getName2.call(school) // 111 不能当作构造函数 let Person = (name, age) =\u003e { this.name = name; this.age = age } let xiaoming = new Person('xiaoming', 18) // 报错 不能使用arguments 变量 let fn = () =\u003e { console.log(arguments) } // arguments is not defined ",
   "wordCount" : "72",
   "inLanguage": "en",
   "datePublished": "2021-06-20T23:37:46+08:00",
   "dateModified": "2021-06-20T23:37:46+08:00",
   "author":{
     "@type": "Person",
-    "name": "KyrieZheng"
+    "name": "OswinZheng"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyriezheng.github.io/posts/js-arrow-fun/"
+    "@id": "https://oswinzheng.github.io/posts/js-arrow-fun/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "KyrieZheng's Blog",
+    "name": "OswinZheng's Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://kyriezheng.github.io/favicon.ico"
+      "url": "https://oswinzheng.github.io/favicon.ico"
     }
   }
 }
@@ -138,7 +138,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://kyriezheng.github.io/" accesskey="h" title="KyrieZheng&#39;s Blog (Alt + H)">KyrieZheng&#39;s Blog</a>
+            <a href="https://oswinzheng.github.io/" accesskey="h" title="OswinZheng&#39;s Blog (Alt + H)">OswinZheng&#39;s Blog</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -164,17 +164,17 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://kyriezheng.github.io/posts" title="post">
+                <a href="https://oswinzheng.github.io/posts" title="post">
                     <span>post</span>
                 </a>
             </li>
             <li>
-                <a href="https://kyriezheng.github.io/archives" title="archives">
+                <a href="https://oswinzheng.github.io/archives" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="https://kyriezheng.github.io/about" title="about me">
+                <a href="https://oswinzheng.github.io/about" title="about me">
                     <span>about me</span>
                 </a>
             </li>
@@ -185,11 +185,11 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyriezheng.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://kyriezheng.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="https://oswinzheng.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://oswinzheng.github.io/posts/">Posts</a></div>
     <h1 class="post-title">
       JavaScript 中的箭头函数
     </h1>
-    <div class="post-meta"><span title='2021-06-20 23:37:46 +0800 CST'>June 20, 2021</span>&nbsp;·&nbsp;KyrieZheng
+    <div class="post-meta"><span title='2021-06-20 23:37:46 +0800 CST'>June 20, 2021</span>&nbsp;·&nbsp;OswinZheng
 
 </div>
   </header> 
@@ -197,43 +197,43 @@
 <ul>
 <li>this 是静态的 使用call 也无法改变</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">function</span> getName<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    console.log<span style="color:#f92672">(</span>this.name<span style="color:#f92672">)</span>
-<span style="color:#f92672">}</span>
-
-let getName2 <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
-    console.log<span style="color:#f92672">(</span>this.name<span style="color:#f92672">)</span>
-<span style="color:#f92672">}</span>
-
-window.name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;111&#39;</span>
-let school <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
-    name: <span style="color:#e6db74">&#39;222&#39;</span>
-<span style="color:#f92672">}</span>
-
-getName.call<span style="color:#f92672">(</span>school<span style="color:#f92672">)</span> // <span style="color:#ae81ff">222</span>
-getName2.call<span style="color:#f92672">(</span>school<span style="color:#f92672">)</span> // <span style="color:#ae81ff">111</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> getName<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    console.log<span style="color:#f92672">(</span>this.name<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>let getName2 <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    console.log<span style="color:#f92672">(</span>this.name<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>window.name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;111&#39;</span>
+</span></span><span style="display:flex;"><span>let school <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    name: <span style="color:#e6db74">&#39;222&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>getName.call<span style="color:#f92672">(</span>school<span style="color:#f92672">)</span> // <span style="color:#ae81ff">222</span>
+</span></span><span style="display:flex;"><span>getName2.call<span style="color:#f92672">(</span>school<span style="color:#f92672">)</span> // <span style="color:#ae81ff">111</span>
+</span></span></code></pre></div><ul>
 <li>不能当作构造函数</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">let Person <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>name, age<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
-    this.name <span style="color:#f92672">=</span> name;
-    this.age <span style="color:#f92672">=</span> age
-<span style="color:#f92672">}</span>
-
-let xiaoming <span style="color:#f92672">=</span> new Person<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;xiaoming&#39;</span>, 18<span style="color:#f92672">)</span> // 报错
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>let Person <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>name, age<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    this.name <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>    this.age <span style="color:#f92672">=</span> age
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>let xiaoming <span style="color:#f92672">=</span> new Person<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;xiaoming&#39;</span>, 18<span style="color:#f92672">)</span> // 报错
+</span></span></code></pre></div><ul>
 <li>不能使用arguments 变量</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">let fn <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
-    console.log<span style="color:#f92672">(</span>arguments<span style="color:#f92672">)</span>
-<span style="color:#f92672">}</span> // arguments is not defined
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>let fn <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    console.log<span style="color:#f92672">(</span>arguments<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> // arguments is not defined
+</span></span></code></pre></div>
 
   </div>
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyriezheng.github.io/posts/tcp/">
+  <a class="prev" href="https://oswinzheng.github.io/posts/tcp/">
     <span class="title">« Prev Page</span>
     <br>
     <span>网络通信</span>
@@ -245,7 +245,7 @@ let xiaoming <span style="color:#f92672">=</span> new Person<span style="color:#
     </main>
     
 <footer class="footer">
-    <span>&copy; 2022 <a href="https://kyriezheng.github.io/">KyrieZheng&#39;s Blog</a></span>
+    <span>&copy; 2022 <a href="https://oswinzheng.github.io/">OswinZheng&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

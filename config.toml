@@ -1,6 +1,6 @@
-baseURL = "https://kyriezheng.github.io/"
+baseURL = "https://oswinzheng.github.io/"
 languageCode = "en-us"
-title = "KyrieZheng's Blog"
+title = "OswinZheng's Blog"
 theme = "hugo-PaperMod"
 publishDir = "docs"
 paginate = 4
@@ -26,7 +26,7 @@ ShowToc = true
 
 [params]
   # Site author
-  author = "KyrieZheng"
+  author = "OswinZheng"
 
   # homepage 页描述信息
   description = "我的博客站点"
@@ -35,11 +35,11 @@ ShowToc = true
 
 [[params.socialIcons]]
     name = "github"
-    url = "https://github.com/KyrieZheng"
+    url = "https://github.com/OswinZheng"
 
 [params.utteranc]         # utteranc is a comment system based on GitHub issues. see https://utteranc.es
     enable = true
-    repo = "KyrieZheng/KyrieZheng.github.io"    # The repo to store comments
+    repo = "OswinZheng/OswinZheng.github.io"    # The repo to store comments
     issueTerm = "pathname"
 
 

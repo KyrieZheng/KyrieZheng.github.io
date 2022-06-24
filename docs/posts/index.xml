@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on KyrieZheng&#39;s Blog</title>
-    <link>https://kyriezheng.github.io/posts/</link>
-    <description>Recent content in Posts on KyrieZheng&#39;s Blog</description>
+    <title>Posts on OswinZheng&#39;s Blog</title>
+    <link>https://oswinzheng.github.io/posts/</link>
+    <description>Recent content in Posts on OswinZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Aug 2021 10:10:42 +0800</lastBuildDate><atom:link href="https://kyriezheng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Aug 2021 10:10:42 +0800</lastBuildDate><atom:link href="https://oswinzheng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>最短路径问题</title>
-      <link>https://kyriezheng.github.io/posts/shortest-path/</link>
+      <link>https://oswinzheng.github.io/posts/shortest-path/</link>
       <pubDate>Tue, 10 Aug 2021 10:10:42 +0800</pubDate>
       
-      <guid>https://kyriezheng.github.io/posts/shortest-path/</guid>
-      <description>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start&amp;quot;) 机器人每次只能向下或者向右移动一步。机器人试图达到王哥的右上角（在图中标记为“Finssh”） 总共有多少条不同的路径？ leetCode62
+      <guid>https://oswinzheng.github.io/posts/shortest-path/</guid>
+      <description>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start&amp;#34;) 机器人每次只能向下或者向右移动一步。机器人试图达到王哥的右上角（在图中标记为“Finssh”） 总共有多少条不同的路径？ leetCode62
 func UniquePaths(m, n int) int { dp := make([][]int, m) // 第一列只有一条途径 for i := range dp { dp[i] = make([]int, n) dp[i][0] = 1 } // 第一行只有一条路径 for j := 0;j &amp;lt; n;j++ { dp[0][j] = 1 } //动态规划表达式 for i:=1;i&amp;lt;m;i++ { for j:=1;j&amp;lt;n;j++ { dp[i][j] = dp[i-1][j] + dp[i][j-1] } } return dp[m-1][n-1] } </description>
     </item>
     
     <item>
       <title>堆排序 &amp;&amp; 堆的应用</title>
-      <link>https://kyriezheng.github.io/posts/h-sort/</link>
+      <link>https://oswinzheng.github.io/posts/h-sort/</link>
       <pubDate>Fri, 30 Jul 2021 16:53:30 +0800</pubDate>
       
-      <guid>https://kyriezheng.github.io/posts/h-sort/</guid>
+      <guid>https://oswinzheng.github.io/posts/h-sort/</guid>
       <description>堆 什么是堆？？ 堆的定义
- 堆是一种完全二叉树，完全二叉树的形式是指除了最后一层之外，其他所有层的结点都是满的，而最后一层的所有结点都靠左边 堆中的每一个节点的值需要大于等于（或者小于等于）其子树的每一个节点  如何实现一个堆   每个节点的值都大于等于其子树的称为大顶堆
-  每个节点的值都小于等于其子树的称为小顶堆
-  可以使用数组来表示堆 因为堆是一个完全二叉树 满足节点i的子树为2i 和 2i + 1 可以使用数组表示一个堆
-  Show Code type Heap struct { M []int Len int } // BuildHeap 对数组进行堆化 func BuildHeap(array []int) *Heap { m := make([]int, 1) m = append(m, array...) n := len(m) - 1 for i := n / 2; i &amp;gt; 0; i-- { heapF(m, n, i) } return &amp;amp;Heap{ M: m, Len: n, } } // 堆节点堆化 func heapF(m []int, n, i int) { for { maxPos := i if 2*i &amp;lt;= n &amp;amp;&amp;amp; m[2*i] &amp;gt; m[i] { maxPos = 2 * i } if 2*i+1 &amp;lt;= n &amp;amp;&amp;amp; m[2*i+1] &amp;gt; m[maxPos] { maxPos = 2*i + 1 } if maxPos == i { //如果i节点位置正确，则退出 break } m[i], m[maxPos] = m[maxPos], m[i] i = maxPos } } func (h *Heap) Insert(data int) { h.</description>
+堆是一种完全二叉树，完全二叉树的形式是指除了最后一层之外，其他所有层的结点都是满的，而最后一层的所有结点都靠左边 堆中的每一个节点的值需要大于等于（或者小于等于）其子树的每一个节点 如何实现一个堆 每个节点的值都大于等于其子树的称为大顶堆
+每个节点的值都小于等于其子树的称为小顶堆
+可以使用数组来表示堆 因为堆是一个完全二叉树 满足节点i的子树为2i 和 2i + 1 可以使用数组表示一个堆
+Show Code type Heap struct { M []int Len int } // BuildHeap 对数组进行堆化 func BuildHeap(array []int) *Heap { m := make([]int, 1) m = append(m, array...) n := len(m) - 1 for i := n / 2; i &amp;gt; 0; i-- { heapF(m, n, i) } return &amp;amp;Heap{ M: m, Len: n, } } // 堆节点堆化 func heapF(m []int, n, i int) { for { maxPos := i if 2*i &amp;lt;= n &amp;amp;&amp;amp; m[2*i] &amp;gt; m[i] { maxPos = 2 * i } if 2*i+1 &amp;lt;= n &amp;amp;&amp;amp; m[2*i+1] &amp;gt; m[maxPos] { maxPos = 2*i + 1 } if maxPos == i { //如果i节点位置正确，则退出 break } m[i], m[maxPos] = m[maxPos], m[i] i = maxPos } } func (h *Heap) Insert(data int) { h.</description>
     </item>
     
     <item>
       <title>循环队列</title>
-      <link>https://kyriezheng.github.io/posts/cycle-queue/</link>
+      <link>https://oswinzheng.github.io/posts/cycle-queue/</link>
       <pubDate>Fri, 23 Jul 2021 15:22:15 +0800</pubDate>
       
-      <guid>https://kyriezheng.github.io/posts/cycle-queue/</guid>
+      <guid>https://oswinzheng.github.io/posts/cycle-queue/</guid>
       <description>数据结构-队列 队列 队列的概念 就是先进先出 队列的两个基本操作 入队（push）出对（pop）
 顺序队列 / 链式队列 顺序队列使用数组来实现
 链式队列使用链表来实现
@@ -48,46 +48,53 @@ type Object interface { } // len 表示我们用于储存数据的数组的长�
     
     <item>
       <title>反转链表如何实现？</title>
-      <link>https://kyriezheng.github.io/posts/reverse-list/</link>
+      <link>https://oswinzheng.github.io/posts/reverse-list/</link>
       <pubDate>Thu, 15 Jul 2021 16:04:53 +0800</pubDate>
       
-      <guid>https://kyriezheng.github.io/posts/reverse-list/</guid>
-      <description>链表 实现链表反转 type ListNode struct { Val int Next *ListNode } func ReverseList(head *ListNode) *ListNode { if head == nil { return nil } var newHead *ListNode for head != nil { node := head.Next head.Next = newHead newHead = head head = node } return newHead } func FormatNode(head *ListNode) string { if head == nil { return &amp;quot;nil&amp;quot; } returnNode := &amp;quot;&amp;quot; for head != nil { stringNode := head.</description>
+      <guid>https://oswinzheng.github.io/posts/reverse-list/</guid>
+      <description>链表 实现链表反转 type ListNode struct { Val int Next *ListNode } func ReverseList(head *ListNode) *ListNode { if head == nil { return nil } var newHead *ListNode for head != nil { node := head.Next head.Next = newHead newHead = head head = node } return newHead } func FormatNode(head *ListNode) string { if head == nil { return &amp;#34;nil&amp;#34; } returnNode := &amp;#34;&amp;#34; for head != nil { stringNode := head.</description>
     </item>
     
     <item>
       <title>如何分析你的算法</title>
-      <link>https://kyriezheng.github.io/posts/complexity/</link>
+      <link>https://oswinzheng.github.io/posts/complexity/</link>
       <pubDate>Sat, 10 Jul 2021 16:57:04 +0800</pubDate>
       
-      <guid>https://kyriezheng.github.io/posts/complexity/</guid>
+      <guid>https://oswinzheng.github.io/posts/complexity/</guid>
       <description>众所周知，数据结构和算法要解决的问题是“省”和“快”，即如何让代码运行的更快，如何让代码能更省存储空间
 复杂度分析 需要从两个维度分析复杂度
- 时间复杂度 空间复杂度  func cal(n int) int { sum := 0 for i := 1;i &amp;lt;= n;i++ { sum = sum + i } return sum } 例子中第二行是常量的执行时间，与n的大小无关，第3，4行代码执行了n次。 分析代码的执行时间，假设每一行都需要1个unit_time，那这段代码总的执行时间就是(2n+1)*unit_time,所有代码的执行时间T(n)与每行代码的执行次数成正比 大O时间复杂度实际上并不能表示真正执行的时间，是表示代码执行时间随数据增长的变化趋势，所以时间复杂度是T(n) = O(n)
-如何计算时间复杂度  关注循环执行次数最多的一段代码  上面说到大O表示法是表示一种变化趋势，所以只需要记录一个最大的量级，所以只关注循环执行最多的那一段代码就可以了
-加法法则  分析代码每一部分的时间复杂度，然后放到一起，再取一个量级最大的作为整段的复杂度 3. 乘法法则
+时间复杂度 空间复杂度 func cal(n int) int { sum := 0 for i := 1;i &amp;lt;= n;i++ { sum = sum + i } return sum } 例子中第二行是常量的执行时间，与n的大小无关，第3，4行代码执行了n次。 分析代码的执行时间，假设每一行都需要1个unit_time，那这段代码总的执行时间就是(2n+1)*unit_time,所有代码的执行时间T(n)与每行代码的执行次数成正比 大O时间复杂度实际上并不能表示真正执行的时间，是表示代码执行时间随数据增长的变化趋势，所以时间复杂度是T(n) = O(n)
+如何计算时间复杂度 关注循环执行次数最多的一段代码 上面说到大O表示法是表示一种变化趋势，所以只需要记录一个最大的量级，所以只关注循环执行最多的那一段代码就可以了
+加法法则 分析代码每一部分的时间复杂度，然后放到一起，再取一个量级最大的作为整段的复杂度 3. 乘法法则
 嵌套代码的复杂度等于嵌套内外代码复杂度的乘积
 看两个例子 func cal(n int) int { sum1 := 0 for i := 1;i &amp;lt; n;i++ { sum1 = sum1 + i } sum2 := 0 for q := 1;q &amp;lt; n;q++ { sum2 = sum2 + 1 } sum3 := 0 for a := 1;a &amp;lt; n; a++ { for b := 1;b &amp;lt; n;b++ { sum3 = sum3 + a + b } } sum := sum1 + sum2 + sum3 return sum } 使用加法法则 可以求出函数的时间复杂度 O(n)+O(n)+O(n^2) 总的时间复杂度等于量级最大的时间复杂度 O(n^2)</description>
     </item>
     
     <item>
       <title>网络通信</title>
-      <link>https://kyriezheng.github.io/posts/tcp/</link>
+      <link>https://oswinzheng.github.io/posts/tcp/</link>
       <pubDate>Wed, 30 Jun 2021 16:32:22 +0800</pubDate>
       
-      <guid>https://kyriezheng.github.io/posts/tcp/</guid>
-      <description>网络通信 七层网络模型  应用层  HTTP FTP SSH 等等   表示层 会话层 传输层  TCP UDP RTP   网络层  IP ICMP   数据链路层  以太网   物理层  TCP / UDP TCP建立连接三次握手
- 第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x+1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN+ACK报文段 将ACK=y+1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态  TCP断开连接四次分手
- 第一次分手：主机1 发送FIN报文段seq=x+2 ACK=y+1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x+3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y+1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y+2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了  UDP</description>
+      <guid>https://oswinzheng.github.io/posts/tcp/</guid>
+      <description>网络通信 七层网络模型 应用层 HTTP FTP SSH 等等 表示层 会话层 传输层 TCP UDP RTP 网络层 IP ICMP 数据链路层 以太网 物理层 TCP / UDP TCP建立连接三次握手
+第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x+1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN+ACK报文段 将ACK=y+1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态 TCP断开连接四次分手
+第一次分手：主机1 发送FIN报文段seq=x+2 ACK=y+1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x+3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y+1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y+2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了 UDP
+UDP不是面向连接的，UDP传送数据前并不与对方建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收，当然也不用重发，所以说UDP是无连接的、不可靠的一种数据传输协议 UDP的开销更小数据传输速率更高，因为不必进行收发数据的确认，所以UDP的实时性更好。知道了TCP和UDP的区别，就不难理解为何采用TCP传输协议的MSN比采用UDP的QQ传输文件慢了，但并不能说QQ的通信是不安全的，因为程序员可以手动对UDP的数据收发进行验证，比如发送方对每个数据包进行编号然后由接收方进行验证啊什么的，即使是这样，UDP因为在底层协议的封装上没有采用类似TCP的“三次握手”而实现了TCP所无法达到的传输效率 通信加密 对称加密 对称加密 加密解密使用同一密钥
+优点：运算速度快
+缺点：无法安全的将密钥传输给通信方
+非对称加密 非对称密钥加密 公开密钥加密 加密和解密使用不同的密钥
+公共密钥所有人都可以获得，通信发送方获得接收方的公开密钥之后，就可以使用公开密钥进行加密 接收方收到通信内容后使用私有密钥解密
+优点：可以安全地将公开密钥传输到通信发送方
+缺点：运算速度慢</description>
     </item>
     
     <item>
       <title>JavaScript 中的箭头函数</title>
-      <link>https://kyriezheng.github.io/posts/js-arrow-fun/</link>
+      <link>https://oswinzheng.github.io/posts/js-arrow-fun/</link>
       <pubDate>Sun, 20 Jun 2021 23:37:46 +0800</pubDate>
       
-      <guid>https://kyriezheng.github.io/posts/js-arrow-fun/</guid>
-      <description>箭头函数1  this 是静态的 使用call 也无法改变  function getName() { console.log(this.name) } let getName2 = () =&amp;gt; { console.log(this.name) } window.name = &amp;#39;111&amp;#39; let school = { name: &amp;#39;222&amp;#39; } getName.call(school) // 222 getName2.call(school) // 111  不能当作构造函数  let Person = (name, age) =&amp;gt; { this.name = name; this.age = age } let xiaoming = new Person(&amp;#39;xiaoming&amp;#39;, 18) // 报错  不能使用arguments 变量  let fn = () =&amp;gt; { console.</description>
+      <guid>https://oswinzheng.github.io/posts/js-arrow-fun/</guid>
+      <description>箭头函数1 this 是静态的 使用call 也无法改变 function getName() { console.log(this.name) } let getName2 = () =&amp;gt; { console.log(this.name) } window.name = &amp;#39;111&amp;#39; let school = { name: &amp;#39;222&amp;#39; } getName.call(school) // 222 getName2.call(school) // 111 不能当作构造函数 let Person = (name, age) =&amp;gt; { this.name = name; this.age = age } let xiaoming = new Person(&amp;#39;xiaoming&amp;#39;, 18) // 报错 不能使用arguments 变量 let fn = () =&amp;gt; { console.log(arguments) } // arguments is not defined </description>
     </item>
     
   </channel>

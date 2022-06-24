@@ -5,21 +5,28 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>网络通信 | KyrieZheng&#39;s Blog</title>
+<title>网络通信 | OswinZheng&#39;s Blog</title>
 <meta name="keywords" content="" />
-<meta name="description" content="网络通信 七层网络模型  应用层  HTTP FTP SSH 等等   表示层 会话层 传输层  TCP UDP RTP   网络层  IP ICMP   数据链路层  以太网   物理层  TCP / UDP TCP建立连接三次握手
- 第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x&#43;1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN&#43;ACK报文段 将ACK=y&#43;1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态  TCP断开连接四次分手
- 第一次分手：主机1 发送FIN报文段seq=x&#43;2 ACK=y&#43;1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x&#43;3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y&#43;1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y&#43;2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了  UDP">
-<meta name="author" content="KyrieZheng">
-<link rel="canonical" href="https://kyriezheng.github.io/posts/tcp/" />
+<meta name="description" content="网络通信 七层网络模型 应用层 HTTP FTP SSH 等等 表示层 会话层 传输层 TCP UDP RTP 网络层 IP ICMP 数据链路层 以太网 物理层 TCP / UDP TCP建立连接三次握手
+第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x&#43;1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN&#43;ACK报文段 将ACK=y&#43;1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态 TCP断开连接四次分手
+第一次分手：主机1 发送FIN报文段seq=x&#43;2 ACK=y&#43;1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x&#43;3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y&#43;1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y&#43;2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了 UDP
+UDP不是面向连接的，UDP传送数据前并不与对方建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收，当然也不用重发，所以说UDP是无连接的、不可靠的一种数据传输协议 UDP的开销更小数据传输速率更高，因为不必进行收发数据的确认，所以UDP的实时性更好。知道了TCP和UDP的区别，就不难理解为何采用TCP传输协议的MSN比采用UDP的QQ传输文件慢了，但并不能说QQ的通信是不安全的，因为程序员可以手动对UDP的数据收发进行验证，比如发送方对每个数据包进行编号然后由接收方进行验证啊什么的，即使是这样，UDP因为在底层协议的封装上没有采用类似TCP的“三次握手”而实现了TCP所无法达到的传输效率 通信加密 对称加密 对称加密 加密解密使用同一密钥
+优点：运算速度快
+缺点：无法安全的将密钥传输给通信方
+非对称加密 非对称密钥加密 公开密钥加密 加密和解密使用不同的密钥
+公共密钥所有人都可以获得，通信发送方获得接收方的公开密钥之后，就可以使用公开密钥进行加密 接收方收到通信内容后使用私有密钥解密
+优点：可以安全地将公开密钥传输到通信发送方
+缺点：运算速度慢">
+<meta name="author" content="OswinZheng">
+<link rel="canonical" href="https://oswinzheng.github.io/posts/tcp/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://kyriezheng.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://kyriezheng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://kyriezheng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://kyriezheng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://kyriezheng.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://oswinzheng.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://oswinzheng.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://oswinzheng.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://oswinzheng.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://oswinzheng.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -59,19 +66,33 @@
 
     </style>
 </noscript><meta property="og:title" content="网络通信" />
-<meta property="og:description" content="网络通信 七层网络模型  应用层  HTTP FTP SSH 等等   表示层 会话层 传输层  TCP UDP RTP   网络层  IP ICMP   数据链路层  以太网   物理层  TCP / UDP TCP建立连接三次握手
- 第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x&#43;1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN&#43;ACK报文段 将ACK=y&#43;1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态  TCP断开连接四次分手
- 第一次分手：主机1 发送FIN报文段seq=x&#43;2 ACK=y&#43;1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x&#43;3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y&#43;1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y&#43;2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了  UDP" />
+<meta property="og:description" content="网络通信 七层网络模型 应用层 HTTP FTP SSH 等等 表示层 会话层 传输层 TCP UDP RTP 网络层 IP ICMP 数据链路层 以太网 物理层 TCP / UDP TCP建立连接三次握手
+第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x&#43;1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN&#43;ACK报文段 将ACK=y&#43;1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态 TCP断开连接四次分手
+第一次分手：主机1 发送FIN报文段seq=x&#43;2 ACK=y&#43;1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x&#43;3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y&#43;1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y&#43;2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了 UDP
+UDP不是面向连接的，UDP传送数据前并不与对方建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收，当然也不用重发，所以说UDP是无连接的、不可靠的一种数据传输协议 UDP的开销更小数据传输速率更高，因为不必进行收发数据的确认，所以UDP的实时性更好。知道了TCP和UDP的区别，就不难理解为何采用TCP传输协议的MSN比采用UDP的QQ传输文件慢了，但并不能说QQ的通信是不安全的，因为程序员可以手动对UDP的数据收发进行验证，比如发送方对每个数据包进行编号然后由接收方进行验证啊什么的，即使是这样，UDP因为在底层协议的封装上没有采用类似TCP的“三次握手”而实现了TCP所无法达到的传输效率 通信加密 对称加密 对称加密 加密解密使用同一密钥
+优点：运算速度快
+缺点：无法安全的将密钥传输给通信方
+非对称加密 非对称密钥加密 公开密钥加密 加密和解密使用不同的密钥
+公共密钥所有人都可以获得，通信发送方获得接收方的公开密钥之后，就可以使用公开密钥进行加密 接收方收到通信内容后使用私有密钥解密
+优点：可以安全地将公开密钥传输到通信发送方
+缺点：运算速度慢" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyriezheng.github.io/posts/tcp/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://oswinzheng.github.io/posts/tcp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-30T16:32:22&#43;08:00" />
 <meta property="article:modified_time" content="2021-06-30T16:32:22&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="网络通信"/>
-<meta name="twitter:description" content="网络通信 七层网络模型  应用层  HTTP FTP SSH 等等   表示层 会话层 传输层  TCP UDP RTP   网络层  IP ICMP   数据链路层  以太网   物理层  TCP / UDP TCP建立连接三次握手
- 第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x&#43;1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN&#43;ACK报文段 将ACK=y&#43;1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态  TCP断开连接四次分手
- 第一次分手：主机1 发送FIN报文段seq=x&#43;2 ACK=y&#43;1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x&#43;3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y&#43;1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y&#43;2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了  UDP"/>
+<meta name="twitter:description" content="网络通信 七层网络模型 应用层 HTTP FTP SSH 等等 表示层 会话层 传输层 TCP UDP RTP 网络层 IP ICMP 数据链路层 以太网 物理层 TCP / UDP TCP建立连接三次握手
+第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x&#43;1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN&#43;ACK报文段 将ACK=y&#43;1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态 TCP断开连接四次分手
+第一次分手：主机1 发送FIN报文段seq=x&#43;2 ACK=y&#43;1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x&#43;3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y&#43;1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y&#43;2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了 UDP
+UDP不是面向连接的，UDP传送数据前并不与对方建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收，当然也不用重发，所以说UDP是无连接的、不可靠的一种数据传输协议 UDP的开销更小数据传输速率更高，因为不必进行收发数据的确认，所以UDP的实时性更好。知道了TCP和UDP的区别，就不难理解为何采用TCP传输协议的MSN比采用UDP的QQ传输文件慢了，但并不能说QQ的通信是不安全的，因为程序员可以手动对UDP的数据收发进行验证，比如发送方对每个数据包进行编号然后由接收方进行验证啊什么的，即使是这样，UDP因为在底层协议的封装上没有采用类似TCP的“三次握手”而实现了TCP所无法达到的传输效率 通信加密 对称加密 对称加密 加密解密使用同一密钥
+优点：运算速度快
+缺点：无法安全的将密钥传输给通信方
+非对称加密 非对称密钥加密 公开密钥加密 加密和解密使用不同的密钥
+公共密钥所有人都可以获得，通信发送方获得接收方的公开密钥之后，就可以使用公开密钥进行加密 接收方收到通信内容后使用私有密钥解密
+优点：可以安全地将公开密钥传输到通信发送方
+缺点：运算速度慢"/>
 
 
 <script type="application/ld+json">
@@ -83,13 +104,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "https://kyriezheng.github.io/posts/"
+      "item": "https://oswinzheng.github.io/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "网络通信",
-      "item": "https://kyriezheng.github.io/posts/tcp/"
+      "item": "https://oswinzheng.github.io/posts/tcp/"
     }
   ]
 }
@@ -100,29 +121,29 @@
   "@type": "BlogPosting",
   "headline": "网络通信",
   "name": "网络通信",
-  "description": "网络通信 七层网络模型  应用层  HTTP FTP SSH 等等   表示层 会话层 传输层  TCP UDP RTP   网络层  IP ICMP   数据链路层  以太网   物理层  TCP / UDP TCP建立连接三次握手\n 第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x+1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN+ACK报文段 将ACK=y+1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态  TCP断开连接四次分手\n 第一次分手：主机1 发送FIN报文段seq=x+2 ACK=y+1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x+3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y+1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y+2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了  UDP",
+  "description": "网络通信 七层网络模型 应用层 HTTP FTP SSH 等等 表示层 会话层 传输层 TCP UDP RTP 网络层 IP ICMP 数据链路层 以太网 物理层 TCP / UDP TCP建立连接三次握手\n第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x+1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN+ACK报文段 将ACK=y+1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态 TCP断开连接四次分手\n第一次分手：主机1 发送FIN报文段seq=x+2 ACK=y+1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x+3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y+1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y+2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了 UDP\nUDP不是面向连接的，UDP传送数据前并不与对方建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收，当然也不用重发，所以说UDP是无连接的、不可靠的一种数据传输协议 UDP的开销更小数据传输速率更高，因为不必进行收发数据的确认，所以UDP的实时性更好。知道了TCP和UDP的区别，就不难理解为何采用TCP传输协议的MSN比采用UDP的QQ传输文件慢了，但并不能说QQ的通信是不安全的，因为程序员可以手动对UDP的数据收发进行验证，比如发送方对每个数据包进行编号然后由接收方进行验证啊什么的，即使是这样，UDP因为在底层协议的封装上没有采用类似TCP的“三次握手”而实现了TCP所无法达到的传输效率 通信加密 对称加密 对称加密 加密解密使用同一密钥\n优点：运算速度快\n缺点：无法安全的将密钥传输给通信方\n非对称加密 非对称密钥加密 公开密钥加密 加密和解密使用不同的密钥\n公共密钥所有人都可以获得，通信发送方获得接收方的公开密钥之后，就可以使用公开密钥进行加密 接收方收到通信内容后使用私有密钥解密\n优点：可以安全地将公开密钥传输到通信发送方\n缺点：运算速度慢",
   "keywords": [
     
   ],
-  "articleBody": "网络通信 七层网络模型  应用层  HTTP FTP SSH 等等   表示层 会话层 传输层  TCP UDP RTP   网络层  IP ICMP   数据链路层  以太网   物理层  TCP / UDP TCP建立连接三次握手\n 第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x+1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN+ACK报文段 将ACK=y+1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态  TCP断开连接四次分手\n 第一次分手：主机1 发送FIN报文段seq=x+2 ACK=y+1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x+3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y+1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y+2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了  UDP\n UDP不是面向连接的，UDP传送数据前并不与对方建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收，当然也不用重发，所以说UDP是无连接的、不可靠的一种数据传输协议 UDP的开销更小数据传输速率更高，因为不必进行收发数据的确认，所以UDP的实时性更好。知道了TCP和UDP的区别，就不难理解为何采用TCP传输协议的MSN比采用UDP的QQ传输文件慢了，但并不能说QQ的通信是不安全的，因为程序员可以手动对UDP的数据收发进行验证，比如发送方对每个数据包进行编号然后由接收方进行验证啊什么的，即使是这样，UDP因为在底层协议的封装上没有采用类似TCP的“三次握手”而实现了TCP所无法达到的传输效率  通信加密 对称加密 对称加密 加密解密使用同一密钥\n优点：运算速度快\n缺点：无法安全的将密钥传输给通信方\n非对称加密 非对称密钥加密 公开密钥加密 加密和解密使用不同的密钥\n公共密钥所有人都可以获得，通信发送方获得接收方的公开密钥之后，就可以使用公开密钥进行加密 接收方收到通信内容后使用私有密钥解密\n优点：可以安全地将公开密钥传输到通信发送方\n缺点：运算速度慢\nhttps加密原理 为什么要加密 因为http的内容是明文传输的 中间会经过中间代理服务器 路由器 wifi热点 通信服务运营商等多个物理节点 如果被劫持传输的内容就完全暴露了 而且还有可能被篡改数据 所以需要进行加密\nhttps 采用非对称加密+对称加密的方式 浏览器请求服务器 服务器把公钥明文发送给浏览器\n浏览器随机生成一个用于对称加密的密钥X 用公钥加密后发送给服务器\n服务器使用私钥获得密钥X 使用对称加密方式通信\nQ\u0026A  TCP服务器最大的并发连接  受限于linux可打开文件数\n 为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态  这是因为虽然双方都同意关闭连接了，而且握手的4个报文也都协调和发送完毕，按理可以直接回到CLOSED状态（就好比从SYN_SEND状态到ESTABLISH状态那样）；但是因为我们必须要假想网络是不可靠的，你无法保证你最后发送的ACK报文会一定被对方收到，因此对方处于LAST_ACK状态下的Socket可能会因为超时未收到ACK报文，而重发FIN报文，所以这个TIME_WAIT状态的作用就是用来重发可能丢失的ACK报文。\n TCP为啥要三次握手  三次握手的过程：第一次握手客户端先发送同步报文到服务端，客户端知道自己有发送和接受的能力，但是不知道服务端游发送和接受的能力，第二次握手服务端发送确认同步报文，此时服务端只知道客户端具有发送的能力，不知道客户端具有接受的能力，第三次握手客户端收到服务端的确认同步报文，知道了服务端有接受和发送的能力，客户端发送确认报文代表准备传输，服务端接受到客户端的确认报文，知道客户端具有接受能力，开始传输。\n1.主要原因是为了防止旧的重复连接引起连接混乱问题\n2.三次握手的目的就是为了避免重复连接\n",
+  "articleBody": "网络通信 七层网络模型 应用层 HTTP FTP SSH 等等 表示层 会话层 传输层 TCP UDP RTP 网络层 IP ICMP 数据链路层 以太网 物理层 TCP / UDP TCP建立连接三次握手\n第一次握手：建立连接。客户端发送连接请求报文段 SYN seq=x 客户端进入SYN_SEND状态 等待服务器的确认 第二次握手：服务器收到客户端的SYN请求报文段 确认请求 ACK=x+1 服务器将上述信息放入报文段发给客户端 服务器进入SYN_RECV状态 第三次握手：客户端收到服务器的SYN+ACK报文段 将ACK=y+1 像服务器发送报文段 客户端和服务端都进入ESTABLISHED状态 TCP断开连接四次分手\n第一次分手：主机1 发送FIN报文段seq=x+2 ACK=y+1 主机1进入FIN_WAIT_1 表明主机1没有数据要发送给主机2了 第二次分手：主机2收到主机1发送的FIN报文段，发送报文段ACK=x+3 主机1进入FIN_WAIT_2状态 表示主机2同意主机1的关闭请求 第三次分手：主机2向主机1发送FIN报文段seq=y+1 请求关闭连接，同时主机2进入LAST_ACK 第四次分手：主机1收到主机2发送的FIN报文段 向主机2发送ACK报文段ACK=y+2 主机1进入TIME_WAIT状态 主机2收到主机1的ACK报文段以后就关闭连接 此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了 UDP\nUDP不是面向连接的，UDP传送数据前并不与对方建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收，当然也不用重发，所以说UDP是无连接的、不可靠的一种数据传输协议 UDP的开销更小数据传输速率更高，因为不必进行收发数据的确认，所以UDP的实时性更好。知道了TCP和UDP的区别，就不难理解为何采用TCP传输协议的MSN比采用UDP的QQ传输文件慢了，但并不能说QQ的通信是不安全的，因为程序员可以手动对UDP的数据收发进行验证，比如发送方对每个数据包进行编号然后由接收方进行验证啊什么的，即使是这样，UDP因为在底层协议的封装上没有采用类似TCP的“三次握手”而实现了TCP所无法达到的传输效率 通信加密 对称加密 对称加密 加密解密使用同一密钥\n优点：运算速度快\n缺点：无法安全的将密钥传输给通信方\n非对称加密 非对称密钥加密 公开密钥加密 加密和解密使用不同的密钥\n公共密钥所有人都可以获得，通信发送方获得接收方的公开密钥之后，就可以使用公开密钥进行加密 接收方收到通信内容后使用私有密钥解密\n优点：可以安全地将公开密钥传输到通信发送方\n缺点：运算速度慢\nhttps加密原理 为什么要加密 因为http的内容是明文传输的 中间会经过中间代理服务器 路由器 wifi热点 通信服务运营商等多个物理节点 如果被劫持传输的内容就完全暴露了 而且还有可能被篡改数据 所以需要进行加密\nhttps 采用非对称加密+对称加密的方式 浏览器请求服务器 服务器把公钥明文发送给浏览器\n浏览器随机生成一个用于对称加密的密钥X 用公钥加密后发送给服务器\n服务器使用私钥获得密钥X 使用对称加密方式通信\nQ\u0026A TCP服务器最大的并发连接 受限于linux可打开文件数\n为什么TIME_WAIT状态还需要等2MSL后才能返回到CLOSED状态 这是因为虽然双方都同意关闭连接了，而且握手的4个报文也都协调和发送完毕，按理可以直接回到CLOSED状态（就好比从SYN_SEND状态到ESTABLISH状态那样）；但是因为我们必须要假想网络是不可靠的，你无法保证你最后发送的ACK报文会一定被对方收到，因此对方处于LAST_ACK状态下的Socket可能会因为超时未收到ACK报文，而重发FIN报文，所以这个TIME_WAIT状态的作用就是用来重发可能丢失的ACK报文。\nTCP为啥要三次握手 三次握手的过程：第一次握手客户端先发送同步报文到服务端，客户端知道自己有发送和接受的能力，但是不知道服务端游发送和接受的能力，第二次握手服务端发送确认同步报文，此时服务端只知道客户端具有发送的能力，不知道客户端具有接受的能力，第三次握手客户端收到服务端的确认同步报文，知道了服务端有接受和发送的能力，客户端发送确认报文代表准备传输，服务端接受到客户端的确认报文，知道客户端具有接受能力，开始传输。\n1.主要原因是为了防止旧的重复连接引起连接混乱问题\n2.三次握手的目的就是为了避免重复连接\n",
   "wordCount" : "97",
   "inLanguage": "en",
   "datePublished": "2021-06-30T16:32:22+08:00",
   "dateModified": "2021-06-30T16:32:22+08:00",
   "author":{
     "@type": "Person",
-    "name": "KyrieZheng"
+    "name": "OswinZheng"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyriezheng.github.io/posts/tcp/"
+    "@id": "https://oswinzheng.github.io/posts/tcp/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "KyrieZheng's Blog",
+    "name": "OswinZheng's Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://kyriezheng.github.io/favicon.ico"
+      "url": "https://oswinzheng.github.io/favicon.ico"
     }
   }
 }
@@ -144,7 +165,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://kyriezheng.github.io/" accesskey="h" title="KyrieZheng&#39;s Blog (Alt + H)">KyrieZheng&#39;s Blog</a>
+            <a href="https://oswinzheng.github.io/" accesskey="h" title="OswinZheng&#39;s Blog (Alt + H)">OswinZheng&#39;s Blog</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -170,17 +191,17 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://kyriezheng.github.io/posts" title="post">
+                <a href="https://oswinzheng.github.io/posts" title="post">
                     <span>post</span>
                 </a>
             </li>
             <li>
-                <a href="https://kyriezheng.github.io/archives" title="archives">
+                <a href="https://oswinzheng.github.io/archives" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="https://kyriezheng.github.io/about" title="about me">
+                <a href="https://oswinzheng.github.io/about" title="about me">
                     <span>about me</span>
                 </a>
             </li>
@@ -191,11 +212,11 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyriezheng.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://kyriezheng.github.io/posts/">Posts</a></div>
+    <div class="breadcrumbs"><a href="https://oswinzheng.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://oswinzheng.github.io/posts/">Posts</a></div>
     <h1 class="post-title">
       网络通信
     </h1>
-    <div class="post-meta"><span title='2021-06-30 16:32:22 +0800 CST'>June 30, 2021</span>&nbsp;·&nbsp;KyrieZheng
+    <div class="post-meta"><span title='2021-06-30 16:32:22 +0800 CST'>June 30, 2021</span>&nbsp;·&nbsp;OswinZheng
 
 </div>
   </header> 
@@ -287,12 +308,12 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyriezheng.github.io/posts/complexity/">
+  <a class="prev" href="https://oswinzheng.github.io/posts/complexity/">
     <span class="title">« Prev Page</span>
     <br>
     <span>如何分析你的算法</span>
   </a>
-  <a class="next" href="https://kyriezheng.github.io/posts/js-arrow-fun/">
+  <a class="next" href="https://oswinzheng.github.io/posts/js-arrow-fun/">
     <span class="title">Next Page »</span>
     <br>
     <span>JavaScript 中的箭头函数</span>
@@ -304,7 +325,7 @@
     </main>
     
 <footer class="footer">
-    <span>&copy; 2022 <a href="https://kyriezheng.github.io/">KyrieZheng&#39;s Blog</a></span>
+    <span>&copy; 2022 <a href="https://oswinzheng.github.io/">OswinZheng&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
